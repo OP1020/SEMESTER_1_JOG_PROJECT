@@ -2,32 +2,43 @@
 import pygame, random
 
 # Initialize pygame
-# TODO: call pygame.init()
-
+pygame.init()
 # Set display window
-# TODO: create a WINDOW_WIDTH variable and assign it a value of 600
-# TODO: create a WINDOW_HEIGHT variable and assign it a value of 600
-# TODO: create a display_surface variable and assign it from pygame.display.set_mode passing
+
+WINDOW_WIDTH = 600
+WINDOW_HEIGHT = 600
+display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+
 # in a tuple of WINDOW_WIDTH and WINDOW_HEIGHT
 # TODO: call pygame.display.set_caption() passing in "~~Snake~~"
-
+pygame.display.set_caption("~~Snake~~")
 # Set FSP and clock
 # TODO: create a FPS variable and assign it a value of 20
 # TODO: create a clock variable and assign it a value of pygame.time.Clock()
-
+FPS = 20
+pygame.time.Clock()
 # Set game values
 # TODO: create a SNAKE_SIZE variable and assign it a value of 20
+SNAKE_SIZE = 20
 # TODO: create a head_x variable and assign it a value of WINDOW_WIDTH // 2
+head_x = WINDOW_WIDTH // 2
 # TODO: repeat for head_y and assign it a value of WINDOW_HEIGHT // 2 + 100
+head_y = WINDOW_HEIGHT // 2 + 100
 # TODO: create a snake_dx variable and assign it a value of 0
+snake_dx = 0
 # TODO: repeat for snake_dy
+snake_dy = 0
 # TODO: create a score variable and assign it a value of 0
-
+score = 0
 # Set colors
 # TODO: create GREEN, RED and WHITE tuples for the colors.  Use Standard RGB settings for those
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+WHITE = (255, 255, 255)
 # TODO: create a DARKGREEN tuple and set to (10, 50, 10)
+DARKGREEN = (10, 50, 10)
 # TODO: create a DARKRED tuple and set to (150, 0, 0)
-
+DARKRED = (150, 0, 0)
 # Set fonts
 font = pygame.font.SysFont('gabriola', 48)
 
@@ -41,6 +52,8 @@ def create_text_and_rect(text, color, background_color, **locations):
         if location == "center":
             rect.center = locations[location]
         # TODO: add an if condition for "topleft" similar to the if condition for "center"
+        if location == "topleft":
+            rect.topleft = locations[location]
     return text, rect
 
 
@@ -53,36 +66,42 @@ title_text, title_rect = create_text_and_rect("~~Snake~~", GREEN, DARKRED,
 # TODO: color is GREEN
 # TODO: background_color is DARKRED
 # TODO: locations are topleft=(10, 10)
+score_text, score_rect = create_text_and_rect("Score:" + str(score), GREEN, DARKRED, topleft = (10, 10))
 
 # TODO: unpack the tuple from create_text_and_rect into a game_over_text and game_over_rect variable
 # TODO: text is "GAMEOVER"
 # TODO: color is RED
 # TODO: background_color is DARKGREEN
 # TODO: locations are center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
-
+game_over_text, game_over_rect = create_text_and_rect("GAMEOVER", RED, DARKGREEN,
+                                                      center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
 # TODO: unpack the tuple from create_text_and_rect into a continue_text and continue_rect variable
 # TODO: text is "Press any key to play again"
 # TODO: color is RED
 # TODO: background_color is DARKGREEN
 # TODO: locations are center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2 + 64)
-
+continue_text, continue_rect = create_text_and_rect("Press any key to play again.", RED, DARKGREEN,
+                                                     center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2 + 64))
 
 # Set sounds and music
 # TODO: create a variable called pick_up_sound and set to pygame.mixer.Sound("pick_up_sound.wav")
+pick_up_sound = pygame.mixer.Sound("pick_up_sound.wav")
 # TODO: make sure you have pick_up_sound.wav in the same folder as snake.py.
 # TODO: make sure both of your files are not in the .venv folder.  Otherwise I won't see what you've done.
-
+#ok
 
 # Set images (in this case, use simple rects...so just create their coordinates)
 # For a rectangle you need (top-left x, top-left y, width, height)
 # TODO: create a variable called apple_coord and set to (500, 500, SNAKE_SIZE, SNAKE_SIZE)
+apple_coord = (500, 500, SNAKE_SIZE, SNAKE_SIZE)
 # TODO: create a variable called apple_rect and set to pygame.draw.rect(display_surface, RED, apple_coord)
-
+apple_rect = pygame.draw.rect(display_surface, RED, apple_coord)
 # TODO: create a variable called head_coord and set to (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
+head_coord = (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
 # TODO: create a variable called head_rect and set to pygame.draw.rect(display_surface, GREEN, head_coord)
-
+head_rect = pygame.draw.rect(display_surface, GREEN, head_coord)
 # TODO: create a variable called body_coords and set to an empty list
-
+body_coords = ()
 
 # The main game loop
 running = True
