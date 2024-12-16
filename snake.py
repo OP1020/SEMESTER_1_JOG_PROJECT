@@ -112,28 +112,31 @@ def move_snake(event):
     global snake_dx, snake_dy
     if event.type == pygame.KEYDOWN:
         key = event.key
-        # TODO: check if key is equal to pygame.K_LEFT
-            # TODO: if so set snake_dx to -1 * SNAKE_SIZE and snake_dy = 0
-        # TODO: check if key is equal to pygame.K_RIGHT
-            # TODO: if so set snake_dx to SNAKE_SIZE and snake_dy to 0
-        # TODO: check if key is equal to pygame.K_UP
-            # TODO: if so set snake_dx to 0 and snake_dy to -1 * SNAKE_SIZE
-        # TODO: check if key is equal to pygame.K_DOWN
-            # TODO: if so set snake_dx to 0 and snake_dy to SNAKE_SIZE
-    pass  # TODO: remove this pass when done
+        if key == pygame.K_LEFT:
+            snake_dx = -1 * SNAKE_SIZE
+            snake_dy = 0
+        if key == pygame.K_RIGHT:
+            snake_dx = SNAKE_SIZE
+        snake_dy = 0
+        if key == pygame.K_UP:
+            snake_dx = 0
+            snake_dy = -1 * SNAKE_SIZE
+        if key == pygame.K_DOWN:
+            snake_dx = 0
+        snake_dy = SNAKE_SIZE
+
 
 
 def check_quit(event):
     global running
-    # TODO: if event is equal to pygame.QUIT  set running to false
-
+    if event.type == pygame.QUIT:
+        running = False
 
 def check_events():
-    global running
-    # TODO: create a for loop events is the variable pygame.event.get() is the list
-        # TODO: call check_quit(event)
+    for event in pygame.event.get():
+        check_quit(event)
+        move_snake(event)
         # TODO: call move_snake(event)
-    pass  # TODO: remove this pass when done.
 
 def handle_snake():
     global body_coords
@@ -141,21 +144,33 @@ def handle_snake():
     global head_y
     global head_coord
     # TODO: call body_coords.insert() method and pass in 0, head_coord
+    body_coords.insert()
+    head_coord = 0
     # TODO: call body_coords.pop()
+    body_coords.pop()
     # TODO: add snake_dx to head_x
+    snake_dx + head_x
     # TODO: add snake_dy to head_y
+    snake_dy + head_y
     # TODO: set head_coord to (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
-
+head_coord = (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
 def reset_game_after_game_over(event):
     global is_paused, score, head_x, head_y, head_coord, body_coords, snake_dx, snake_dy
     # TODO: if event.type is equal to pygame.KEYDOWN
         # TODO: set score to 0
+    score = 0
         # TODO: set head_x to WINDOW_WIDTH // 2
+    head_x = WINDOW_WIDTH // 2
         # TODO: set head_y to WINDOW_HEIGHT // 2 + 100
+    head_y = WINDOW_HEIGHT // 2 + 100
         # TODO: set head_coord = (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
+    head_cord = (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
         # TODO: set body_coords to an empty list
+    body_coords = ()
         # TODO: set snake_dx to 0
+    snake_dx = 0
         # TODO: set snake_dy to 0
+
         # TODO: set is_paused to False
     pass # TODO: remove this when done.
 
